@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './components/Navbar'
+import Place from './components/Place'
+import data from './data'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    let index = 0;
+    let last = false;
+    const place_elements = data.map(place => {
+        index++;
+        if (index === data.length){
+            last = true
+        }
+        return <Place place={place} last={last}/>
+    })
+
+    return (
+        <div className='main-pad'>
+            <Navbar />
+            <div className='places-container'>
+                {place_elements}
+            </div>
+        </div>
+    )
 }
-
-export default App;
